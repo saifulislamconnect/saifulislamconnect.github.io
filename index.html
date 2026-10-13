@@ -3,316 +3,36 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>My GitHub Pages Sites</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Saiful Islam - Projects</title>
+    <meta name="description" content="Web apps built and maintained by Saiful Islam: AI exam simulators, Bengali reading apps, developer tools and everyday utilities.">
+    <meta name="color-scheme" content="light dark">
 
-    <!-- Fonts -->
+    <!-- Apply the saved theme before first paint to avoid a flash -->
+    <script>
+        try { const t = localStorage.getItem("theme"); if (t) document.documentElement.dataset.theme = t; } catch {}
+    </script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
-
-    <!-- Bootstrap 5 -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Noto+Sans+Bengali:wght@500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
 
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3911519177971711"
          crossorigin="anonymous"></script>
 
-    <style>
-        :root {
-            --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
-            --card-bg: rgba(255, 255, 255, 0.03);
-            --card-border: rgba(255, 255, 255, 0.08);
-            --card-hover-bg: rgba(255, 255, 255, 0.08);
-            --card-hover-border: rgba(255, 255, 255, 0.2);
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --accent-gradient: linear-gradient(to right, #c084fc, #ec4899);
-        }
-
-        body {
-            background: var(--bg-gradient);
-            color: var(--text-main);
-            font-family: 'Outfit', sans-serif;
-            min-height: 100vh;
-            margin: 0;
-            padding: 0;
-            overflow-x: hidden;
-        }
-
-        /* Ambient background glow */
-        .ambient-glow {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            overflow: hidden;
-            z-index: -1;
-            pointer-events: none;
-        }
-
-        .ambient-glow::before,
-        .ambient-glow::after {
-            content: '';
-            position: absolute;
-            width: 60vw;
-            height: 60vw;
-            max-width: 600px;
-            max-height: 600px;
-            border-radius: 50%;
-            filter: blur(120px);
-            opacity: 0.3;
-            animation: float 12s infinite alternate ease-in-out;
-        }
-
-        .ambient-glow::before {
-            background: #c084fc;
-            top: -10%;
-            left: -10%;
-        }
-
-        .ambient-glow::after {
-            background: #3b82f6;
-            bottom: -10%;
-            right: -10%;
-            animation-delay: -6s;
-        }
-
-        @keyframes float {
-            0% {
-                transform: translate(0, 0) scale(1);
-            }
-
-            100% {
-                transform: translate(10%, 10%) scale(1.1);
-            }
-        }
-
-        .header-section {
-            padding: 5rem 0 3rem;
-        }
-
-        h1.title {
-            font-weight: 800;
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            margin-bottom: 0.5rem;
-            background: var(--accent-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            display: inline-block;
-        }
-
-        .subtitle {
-            font-weight: 300;
-            color: var(--text-muted);
-            font-size: 1.2rem;
-            letter-spacing: 0.5px;
-        }
-
-        .subtitle a {
-            color: #c084fc;
-            text-decoration: none;
-            font-weight: 600;
-            transition: color 0.3s ease;
-        }
-
-        .subtitle a:hover {
-            color: #ec4899;
-        }
-
-        .site-card {
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: 20px;
-            overflow: hidden;
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            height: 100%;
-            cursor: pointer;
-            text-decoration: none;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .site-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            background: var(--card-hover-bg);
-            border-color: var(--card-hover-border);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
-        }
-
-        .img-wrapper {
-            width: 100%;
-            height: 220px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .img-wrapper::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(to bottom, transparent 60%, rgba(15, 23, 42, 0.8) 100%);
-            opacity: 0;
-            transition: opacity 0.4s ease;
-        }
-
-        .site-card:hover .img-wrapper::after {
-            opacity: 1;
-        }
-
-        .site-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-
-        .site-card:hover .site-img {
-            transform: scale(1.08);
-        }
-
-        .card-content {
-            padding: 1.5rem;
-            flex-grow: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-        }
-
-        .card-title {
-            color: var(--text-main);
-            font-weight: 600;
-            font-size: 1.15rem;
-            margin: 0;
-            line-height: 1.5;
-            transition: color 0.3s ease;
-        }
-
-        .site-card:hover .card-title {
-            background: var(--accent-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        /* Staggered animation for cards */
-        .fade-up {
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeUpAnim 0.6s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
-        }
-
-        @keyframes fadeUpAnim {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-    </style>
+    <script type="importmap">
+        { "imports": { "vue": "https://cdn.jsdelivr.net/npm/vue@3.5.13/dist/vue.esm-browser.prod.js" } }
+    </script>
+    <script type="module" src="assets/js/main.js"></script>
 </head>
 
 <body>
-
-    <div class="ambient-glow"></div>
-
-    <div class="container pb-5">
-        <div class="header-section text-center">
-            <h1 class="title">My Project Sites</h1>
-            <h6 class="subtitle mt-2 mb-5">Created & maintained by <a href="https://github.com/saifulislamconnect"
-                    target="_blank">Saiful Islam</a></h6>
-        </div>
-
-        <div id="site-list" class="row g-4">
-            <!-- JS will inject cards here -->
-        </div>
-    </div>
-
-    <script>
-        const sites = [
-            {
-                title: "কালি ও কবিতা - kali-o-kobita - Bengali Poetry Book",
-                url: "https://saifulislamconnect.github.io/kali-o-kobita",
-                img: "assets/images/kali-o-kobita.png?text=Project+0+Preview"
-            },
-            {
-                title: "DESCO Bill Check - Postpaid Bill",
-                url: "https://desco.onlyapp.top",
-                img: "assets/images/desco-bill-utility.png?text=Project+1+Preview"
-            },
-            {
-                title: "Formatted Text Area with live preview",
-                url: "https://saifulislamconnect.github.io/rich-input-formatting",
-                img: "assets/images/textarea-rnd.png?text=Project+2+Preview"
-            },
-            {
-                title: "Textal - Smart Text Analyzer",
-                url: "https://saifulislamconnect.github.io/textal",
-                img: "assets/images/textal.png?text=Project+3+Preview"
-            },
-            {
-                title: "BDIX FTP Movie Server Finder",
-                url: "https://bdix-hunter.onlyapp.top",
-                img: "assets/images/bdix.png?text=Project+4+Preview"
-            },
-            {
-                title: "JSON-Fit - Advanced all in one json tools",
-                url: "https://json-fit.onlyapp.top",
-                img: "assets/images/json-fit.png?text=Project+5+Preview"
-            },
-            {
-                title: "Zurban - The time god",
-                url: "https://zurban.onlyapp.top",
-                img: "assets/images/zurban.png?text=Project+7+Preview"
-            },
-            {
-                title: "Hourman - The time crawler",
-                url: "https://hourman.onlyapp.top",
-                img: "assets/images/hourman.png?text=Project+6+Preview"
-            },
-            {
-                title: "My Tax Lawyer - Bangladesh NBR Tax Calculator & Rebate Advisor",
-                url: "https://my-tax-lawyer.onlyapp.top",
-                img: "assets/images/my-tax-lawyer.png"
-            },
-            {
-                title: "আঁতেল - বাঙালি মননের ডিজিটাল পাঠকক্ষ",
-                url: "https://aatel.onlyapp.top",
-                img: "assets/images/aatel.png"
-            },
-            {
-                title: "PACEStation - AI-Powered MRCP PACES Exam Simulator",
-                url: "https://pacestation.onlyapp.top",
-                img: "assets/images/pacestation.png"
-            }
-        ];
-
-        const container = document.getElementById("site-list");
-
-        sites.forEach((site, index) => {
-            // Calculate animation delay for staggered effect
-            const delay = index * 0.1;
-
-            const card = `
-        <div class="col-lg-4 col-md-6 fade-up" style="animation-delay: ${delay}s">
-          <a href="${site.url}" target="_blank" class="site-card">
-            <div class="img-wrapper">
-                <img src="${site.img}" class="site-img" alt="${site.title}">
-            </div>
-            <div class="card-content">
-              <h5 class="card-title">${site.title}</h5>
-            </div>
-          </a>
-        </div>
-      `;
-            container.innerHTML += card;
-        });
-    </script>
-
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
+    <div id="app"></div>
+    <noscript>
+        <p style="padding: 2rem; text-align: center">This portfolio needs JavaScript. Browse the code at
+            <a href="https://github.com/saifulislamconnect">github.com/saifulislamconnect</a>.</p>
+    </noscript>
 </body>
 
 </html>
